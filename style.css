@@ -7,6 +7,7 @@
   --c-link: #28f2ae;
   --c-link-v: #5dc7ce;
   --c-link-h: #a1f4d8;
+  --c-accent: #61f536;
 }
 
 a {
@@ -41,4 +42,21 @@ ol, ul {
   width: 100%;
   max-width: 900px;
   margin: auto;
+}
+
+.home-link {
+  position: fixed;
+  top: -0.4rem;
+  left: -0.5rem;
+  background: white;
+  color: var(--c-bg);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  transform: rotate(-10deg);
+  box-shadow: 0 0 5px 1px black;
+}
+
+.home-link:visited {
+  color: var(--c-bg);
 }
