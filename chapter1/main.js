@@ -25,11 +25,15 @@ function render(ctx) {
   const myStar = star(140);
   bgCtx.clearRect(0, 0, width * dpi, height * dpi);
   bgCtx.translate(mx, my);
+  bgCtx.fillStyle = 'white';
   bgCtx.fill(myStar);
+  bgCtx.setTransform(1, 0, 0, 1, 0, 0);
 
   const rA = new Rect(800 - 200, 400 - 200, 800 + 200, 400 + 200);
   const rB = new Rect(mx - 140, my - 140, mx + 140, my + 140);
   const intersection = rectIntersect(rA, rB);
+
+  const collides = bHitTest(ctx, bgCtx, rA, rB);
 
   if (intersection) {
     ctx.beginPath()
@@ -40,11 +44,7 @@ function render(ctx) {
     ctx.closePath();
   }
 
-  const collides = bHitTest(
-    ctx, bgCtx, rA, rB
-  );
-
-  ctx.fillStyle = 'blue';
+  ctx.fillStyle = collides ? 'white' : 'blue';
 
   ctx.translate(mx, my);
   ctx.fill(star(135));
@@ -56,6 +56,7 @@ draw(cvs, ctx, render);
 cvs.addEventListener('mousemove', ev => {
   mx = ev.offsetX * dpi;
   my = ev.offsetY * dpi;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   render(ctx);
 });
 
@@ -83,7 +84,9 @@ function bHitTest(ctxA, ctxB, a, b) {
   const b32 = new Uint32Array(ctxB.getImageData(i.x, i.y, i.width, i.height).data.buffer);
 
   for (let idx = 0; idx < a32.length; idx++) {
-    // console.log(a32[idx], b32[idx]);
+    if ((a32[idx] & 0xff) > 0 && (b32[idx] & 0xff) > 0) {
+      return true;
+    }
   }
 }
 
