@@ -1,5 +1,8 @@
 import './main.css';
 import Rect from './rect';
+import md from '../utils/md';
+
+md(document.getElementsByTagName('article')[0]);
 
 const dpi = window.devicePixelRatio;
 const cvs = document.getElementById('canvas');

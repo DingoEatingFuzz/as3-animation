@@ -3,7 +3,8 @@
   font-size: 18px;
 
   --c-bg: #1b2b34;
-  --c-fg: #ffffff;
+  --c-fg: #c2d8e5;
+  --c-fg-bright: #ffffff;
   --c-link: #28f2ae;
   --c-link-v: #5dc7ce;
   --c-link-h: #a1f4d8;
@@ -27,10 +28,16 @@ html, body {
   padding: 0;
   background: var(--c-bg);
   color: var(--c-fg);
+  line-height: 1.3;
+}
+
+h1, h2, h3, h4, h5, h6, code, strong {
+  color: var(--c-fg-bright);
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
 }
 
 ol, ul {
@@ -38,7 +45,7 @@ ol, ul {
   list-style-position: inside;
 }
 
-.toc {
+.toc, article {
   width: 100%;
   max-width: 900px;
   margin: auto;
